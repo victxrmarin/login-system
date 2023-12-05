@@ -1,21 +1,15 @@
-
 const Sequelize = require("sequelize");
 const dotenv = require("dotenv")
 dotenv.config();
 
-const { DB_NAME, USER, HOSTNAME, PASSWORD, PORT } = process.env;
+const { DB_NAME } = process.env;
 
-const sequelize = new Sequelize(DB_NAME, USER, PASSWORD, {
-  dialect: "mariadb",
-  host: HOSTNAME,
-  port: PORT,
-  waitForConnections: true,
-  connectionLimit: 10,
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: `./${DB_NAME}.sqlite`
 });
 
-module.exports = {
-  sequelize,
-}
+
 
 
 
